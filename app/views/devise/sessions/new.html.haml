@@ -1,0 +1,28 @@
+%section#login
+  .container
+    .row
+      .col-lg.col-xs
+        .form-wrap
+          %h1 Log In Form
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            %form#login-form
+              .form-group
+                = f.label :email, class: "sr-only"
+                %br/
+                = f.email_field :email, autofocus: true, class: "form-control", placeholder: "your@email.com"
+              .form-group
+                = f.label :password, class: "sr-only"
+                %br/
+                = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "password"
+              - if devise_mapping.rememberable?
+                .form-group
+                  = f.check_box :remember_me, class: "character-checkbox"
+                  = f.label :remember_me
+              .actions
+                = f.submit "Log in", class: 'btn btn-custom btn-lg btn-block'
+          %hr/
+          %div{:align => "center"}
+            = render "devise/shared/links"
+      / /.col-xs-12
+    / /.row
+  / /.container
